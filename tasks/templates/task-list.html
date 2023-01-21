@@ -1,0 +1,57 @@
+{%extends "base.html"%}
+{%block body%}
+<div class="container">
+    
+            {% if messages%}
+            <div class="row">
+                <div class="col-4"></div>
+                    <div class="col-4">
+                    {% for msg in messages%}
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <strong>{{msg}}</strong> 
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                          </div>
+                    {%endfor%}
+                    </div>
+                <div class="col-4"></div>
+             </div>
+            {% endif%}
+        
+    
+    <div class="row">
+        <div class="col-2"></div>
+        <div class="col-8">
+            <table class="table table-dark table-striped-columns text-white mt-5">
+                <tr>
+                    <th>Task Id</th>
+                    <th>Task Name</th>
+                    <th>User</th>
+                    <th>Date</th>
+                    <th>Status</th>
+                    <th>Action</th>
+                </tr>
+                {%for t in todos%}
+                <tr>
+                    <td>{{t.id}}</td>
+                    <td>{{t.task_name}}</td>
+                    <td>{{t.user}}</td>
+                    <td>{{t.created_date}}</td>
+                    <td>{{t.status}}</td>
+                    <td>
+                        <a href="{%url 'task-details' t.id%}">view</a>
+                        <a href="{%url 'task-delete' t.id%}">delete</a>
+                    </td>
+                </tr>
+                {%endfor%}
+
+            </table>
+        </div>
+        <div class="col-2"></div>
+    </div>
+
+</div>
+
+
+{%endblock%}
+
+
